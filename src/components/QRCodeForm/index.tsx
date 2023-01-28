@@ -1,7 +1,8 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { useState } from "react";
+import { styles } from "./styles";
 
 function QRCodeForm() {
   const [materia, setMateria] = useState('');
@@ -39,61 +40,56 @@ function QRCodeForm() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <TextInput
-        style={styles.input}
-        onChangeText={setMateria}
-        placeholder="Nome da matéria"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setProfessor}
-        placeholder="Nome do professor"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setDataSemestre}
-        placeholder="Data"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setHorarioInicio}
-        placeholder="Horário de inicio"
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={setHorarioFim}
-        placeholder="Horário de termino"
-      />
+    <ScrollView 
+      showsVerticalScrollIndicator={false} 
+      contentContainerStyle={styles.container}
+    >
+      <Text style={styles.advice}>Preencha os campos abaixo para gerar uma nova presença</Text>
+      
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={setMateria}
+          placeholder="Nome da matéria"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setProfessor}
+          placeholder="Nome do professor"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setDataSemestre}
+          placeholder="Data"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setHorarioInicio}
+          placeholder="Horário de inicio"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={setHorarioFim}
+          placeholder="Horário de termino"
+        />
 
-      <TouchableOpacity
-        onPress={handleSubmit}
-      >
-        <Text>Gerar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleSubmit}
+          style={styles.button}
+        >
+          <Text>Gerar</Text>
+        </TouchableOpacity>
+      </View>
 
-      <QRCode
-        value={
-          JSON.stringify(QRData)
-        }
-      />
-    </SafeAreaView>
+      <View style={styles.code}>
+        <QRCode
+          value={
+            JSON.stringify(QRData)
+          }
+        />
+      </View>
+    </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center'
-  },
-  input: {
-    marginTop: 15,
-    borderBottomWidth: 1,
-    borderColor: '#171626',
-    borderWidth: 1,
-    borderRadius: 8,
-    width: '80%',
-    padding: 5
-  }
-}) 
 
 export default QRCodeForm;

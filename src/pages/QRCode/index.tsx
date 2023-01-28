@@ -10,7 +10,7 @@ interface Prop {
 
 function QRCode({type}: Prop) {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       {
         type === "professor"
           ? <QRCodeForm />
@@ -19,11 +19,5 @@ function QRCode({type}: Prop) {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-})
 
 export default QRCode;

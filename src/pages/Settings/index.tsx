@@ -1,10 +1,15 @@
-import { Text } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
+import Profile from "../../components/Profile";
+import SettingsCard from "../../components/SettingsCard";
 
 function Settings() {
   return (
-    <Text>
-      Settings
-    </Text>
+    <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Profile />
+        <SettingsCard />
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

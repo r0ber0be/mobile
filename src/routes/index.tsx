@@ -50,6 +50,7 @@ function Routes({type} : Prop) {
         name='Settings'
         component={Settings}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             return focused 
               ? <Ionicons name="ios-settings" size={size} color={color} />
