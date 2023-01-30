@@ -1,7 +1,7 @@
 import { Image, StyleSheet, ImageSourcePropType, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
-interface DisciplineProps {
+export interface DisciplineProps {
   id: string,
   name: string,
   hours: string,

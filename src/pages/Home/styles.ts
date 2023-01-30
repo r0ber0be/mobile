@@ -6,10 +6,6 @@ export const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 0,
   },
-  contentList: {
-    padding: 15,
-    paddingTop: 0,
-  },
   data: {
     marginBottom: 6,
     fontWeight: '700'
