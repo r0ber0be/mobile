@@ -3,32 +3,37 @@ import { styles } from "./styles";
 
 export interface DisciplineProps {
   id: string,
-  name: string,
-  hours: string,
-  isChecked: boolean,
-  cover: ImageSourcePropType;
+  startTime: string,
+  endTime: string,
+  isChecked: Boolean,
+  cover?: ImageSourcePropType,
+  className: string,
+  numberOfStudents: BigInt,
+  acceptPresenceByCard: Boolean,
+  acceptPresenceByQRCode: Boolean,
+  professor: string,
 }
 
 interface Props {
   data: DisciplineProps;
 }
 
-function Card({ data }: Props) {
+function Card({ data: {id, professor, startTime, endTime, isChecked, cover, className} }: Props) {
   return (
     <TouchableOpacity activeOpacity={0.5} 
-      style={[styles.container, data.isChecked ? styles.bgPresence : styles.bgNotChecked]} 
-      onPress={() => alert(`Hello, this is ${data.id} and ${data.isChecked}`)}
-      onLongPress={() => alert(`${data.id}, o status da sua presença é ${data.isChecked}`)}
+      style={[styles.container, isChecked === true ? styles.bgPresence : styles.bgNotChecked]} 
+      onPress={() => alert(`Hello, this is ${id} and ${isChecked===true}`)}
+      onLongPress={() => alert(`${id}, o status da sua presença é ${isChecked===true}`)}
     >
-      <Image source={data.cover} style={styles.profileCover} />
+      <Image source={cover} style={styles.profileCover} />
       
       <View style={styles.infoContainer}>
-        <Text style={data.isChecked ? styles.presence : styles.notChecked}>
-          {data.name}
+        <Text style={isChecked ? styles.presence : styles.notChecked}>
+          {className} {professor}
         </Text>
 
         <Text style={styles.hours}>
-          {data.hours}
+          {startTime} - {endTime}
         </Text>
       </View>
     </TouchableOpacity>
